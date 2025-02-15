@@ -8,6 +8,9 @@ dependencies:
   '@tailwindcss/vite':
     specifier: ^4.0.6
     version: 4.0.6(vite@6.1.0)
+  chart.js:
+    specifier: ^4.4.7
+    version: 4.4.7
   pinia:
     specifier: ^2.3.1
     version: 2.3.1(typescript@5.7.3)(vue@3.5.13)
@@ -17,6 +20,9 @@ dependencies:
   vue:
     specifier: ^3.5.13
     version: 3.5.13(typescript@5.7.3)
+  vue-chartjs:
+    specifier: ^5.3.2
+    version: 5.3.2(chart.js@4.4.7)(vue@3.5.13)
   vue-router:
     specifier: ^4.5.0
     version: 4.5.0(vue@3.5.13)
@@ -786,6 +792,10 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: true
+
+  /@kurkle/color@0.3.4:
+    resolution: {integrity: sha1-TU/2d+FgkhT8ccWAEl3d3Yaryr8=}
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha1-dhnC6yGyVIP20WdUi0z9WnSIw9U=}
@@ -1774,6 +1784,13 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
     dev: true
+
+  /chart.js@4.4.7:
+    resolution: {integrity: sha1-egHuC02sPAPyqwWJr4iNspbYlvo=}
+    engines: {pnpm: '>=8'}
+    dependencies:
+      '@kurkle/color': 0.3.4
+    dev: false
 
   /check-error@2.1.1:
     resolution: {integrity: sha1-h+uHauce44j6BHH+Qj9JS+HZbMw=}
@@ -3706,6 +3723,16 @@ packages:
   /vscode-uri@3.1.0:
     resolution: {integrity: sha1-3QnsWmaji1w//8d0AVcTSW0U4Jw=}
     dev: true
+
+  /vue-chartjs@5.3.2(chart.js@4.4.7)(vue@3.5.13):
+    resolution: {integrity: sha1-wPIAmvawiEWvFY3e6dCmjZ2uYxs=}
+    peerDependencies:
+      chart.js: ^4.1.1
+      vue: ^3.0.0-0 || ^2.7.0
+    dependencies:
+      chart.js: 4.4.7
+      vue: 3.5.13(typescript@5.7.3)
+    dev: false
 
   /vue-component-type-helpers@2.2.0:
     resolution: {integrity: sha1-3l+oAra+rnElWV7A09UZWiJpFiM=}
