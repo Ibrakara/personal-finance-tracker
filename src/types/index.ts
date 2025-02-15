@@ -1,0 +1,29 @@
+export type Transaction = { amout: number; type: TRANSACTION_TYPE; date: Date }
+export enum TRANSACTION_TYPE {
+  INCOME = 'INCOME',
+  EXPENSE = 'EXPENSE',
+}
+export type Expense = Transaction & { category: EXPENSE_CATAGORIES }
+export enum EXPENSE_CATAGORIES {
+  HOUSING = 'HOUSING',
+  UTILITIES = 'UTILITIES',
+  GROCERIES = 'GROCERIES',
+  TRANSPORTATION = 'TRANSPORTATION',
+  INSURANCE = 'INSURANCE',
+  HEALTHCARE = 'HEALTHCARE',
+  DINING_OUT = 'DINING_OUT',
+  ENTERTAINMENT = 'ENTERTAINMENT',
+  SHOPPING = 'SHOPPING',
+  TRAVEL = 'TRAVEL',
+  HOBBIES = 'HOBBIES',
+  OTHER = 'OTHER',
+}
+export type Income = Transaction & { category: INCOME_CATAGORIES }
+export enum INCOME_CATAGORIES {
+  SALARY = 'SALARY',
+  FREELANCE = 'FREELANCE',
+  INVESMENT = 'INVESMENT',
+  BONUS = 'BONUS',
+  GIFT = 'GIFT',
+  OTHER = 'OTHER',
+}
