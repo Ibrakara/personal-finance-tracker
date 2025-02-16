@@ -9,7 +9,7 @@
         <th class="px-6 py-3">Actions</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody v-if="transactionList.length > 0">
       <tr
         class="bg-white border-b dark:bg-gray-600 dark:border-gray-500 border-gray-100"
         v-for="(item, index) in transactionList"
@@ -18,7 +18,7 @@
         <td class="px-6 py-4">{{ item.type }}</td>
         <td class="px-6 py-4">{{ item.category }}</td>
         <td class="px-6 py-4">{{ item.date }}</td>
-        <td class="px-6 py-4">{{ item.amout }}</td>
+        <td class="px-6 py-4">{{ item.amout }} TL</td>
         <td class="px-6 py-4 flex justify-center">
           <img
             class="w-4 cursor-pointer"
@@ -27,6 +27,15 @@
             @click="onDelete($event, item.id)"
           />
         </td>
+      </tr>
+    </tbody>
+    <tbody v-else>
+      <tr class="bg-white border-b dark:bg-gray-600 dark:border-gray-500 border-gray-100">
+        <td class="px-6 py-4">-</td>
+        <td class="px-6 py-4">-</td>
+        <td class="px-6 py-4">-</td>
+        <td class="px-6 py-4">- TL</td>
+        <td class="px-6 py-4 flex justify-center">-</td>
       </tr>
     </tbody>
   </table>
