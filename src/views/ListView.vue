@@ -24,8 +24,11 @@
         </form>
       </div>
       <CustomTable
-        :transactionList="transactionListByDate"
+        :transactionList="transactionListByPageNumber"
+        :totalPages="totalPages"
+        :currentPage="currentPage"
         @onDelete="(id) => deleteTransaction(id)"
+        @update:currentPage="(emitedPage) => (currentPage = emitedPage)"
       />
     </div>
   </div>
@@ -43,6 +46,7 @@ const { deleteTransaction } = transactionStore
 //states
 const transactionFilterStartDate = ref('')
 const transactionFilterEndDate = ref('')
+const currentPage = ref(1)
 //computeds
 const transactionListByDate = computed(() => {
   return getTransactionList.value.filter((transaction) => {
@@ -72,5 +76,15 @@ const transactionListByDate = computed(() => {
 
     return true
   })
+})
+const transactionListByPageNumber = computed(() => {
+  return transactionListByDate.value.filter((val, index) => {
+    const startIndex = (currentPage.value - 1) * 10
+    const endIndex = currentPage.value * 10
+    return startIndex <= index && index < endIndex
+  })
+})
+const totalPages = computed(() => {
+  return Math.ceil(transactionListByDate.value.length / 10)
 })
 </script>
