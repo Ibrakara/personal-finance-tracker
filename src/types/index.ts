@@ -1,4 +1,4 @@
-export type Transaction = { amout: number; type: TRANSACTION_TYPE; date: Date }
+export type Transaction = { amout: number; type: TRANSACTION_TYPE; date: string }
 export enum TRANSACTION_TYPE {
   INCOME = 'INCOME',
   EXPENSE = 'EXPENSE',
