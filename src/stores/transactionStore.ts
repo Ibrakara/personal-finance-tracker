@@ -1,6 +1,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { EXPENSE_CATAGORIES, INCOME_CATAGORIES, Transaction, TRANSACTION_TYPE } from '@/types'
+import { v4 as uuidv4 } from 'uuid'
 
 export const useTransactionStore = defineStore('transactionStore', () => {
   //states
@@ -39,6 +40,7 @@ export const useTransactionStore = defineStore('transactionStore', () => {
   //methods
   function createTransaction() {
     const transactionObject: Transaction = {
+      id: uuidv4(),
       date: transactionFormDate.value!,
       amout: transactionFormAmount.value!,
       type: transactionFormType.value!,
@@ -47,7 +49,14 @@ export const useTransactionStore = defineStore('transactionStore', () => {
     transactionList.value.push(transactionObject)
     setLocalStorage()
     $resetTransactionForm()
-    console.log(transactionList.value)
+  }
+  function deleteTransaction(id: string) {
+    transactionList.value = [
+      ...transactionList.value.filter((item) => {
+        return item.id !== id
+      }),
+    ]
+    setLocalStorage()
   }
   function setLocalStorage() {
     const stringifiedTransactionList = JSON.stringify(transactionList.value)
@@ -83,5 +92,6 @@ export const useTransactionStore = defineStore('transactionStore', () => {
     getTransactionList,
     //methods
     createTransaction,
+    deleteTransaction,
   }
 })

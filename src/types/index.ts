@@ -1,4 +1,5 @@
 export type Transaction = {
+  id: string
   amout: number
   type: TRANSACTION_TYPE
   date: string
