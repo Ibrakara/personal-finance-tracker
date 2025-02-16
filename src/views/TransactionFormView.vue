@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col min-h-96 sm:w-sm md:w-md xl:w-xl justify-between items-center">
+  <div
+    class="flex flex-col min-h-[40vh] sm:w-sm md:w-md xl:w-xl justify-between gap-32 items-center"
+  >
     <div class="w-full">
       <h5 class="text-center text-3xl font-semibold text-slate-500">Create Transaction</h5>
     </div>

@@ -1,12 +1,12 @@
 <template>
-  <table class="w-5/6 text-sm text-center rtl:text-right text-gray-300 dark:text-gray-200">
+  <table class="w-full text-sm text-center rtl:text-right text-gray-300 dark:text-gray-200">
     <thead class="text-xs text-gray-500 capitalize bg-gray-50 dark:bg-gray-500 dark:text-gray-200">
       <tr>
-        <th class="px-6 py-3">Type</th>
-        <th class="px-6 py-3">Category</th>
-        <th class="px-6 py-3">Date</th>
-        <th class="px-6 py-3">Amount</th>
-        <th class="px-6 py-3">Actions</th>
+        <th class="md:px-2 py-2">Type</th>
+        <th class="md:px-2 py-2">Category</th>
+        <th class="md:px-2 py-2">Date</th>
+        <th class="md:px-2 py-2">Amount</th>
+        <th class="md:px-2 py-2">Actions</th>
       </tr>
     </thead>
     <tbody v-if="transactionList.length > 0">
@@ -15,11 +15,11 @@
         v-for="(item, index) in transactionList"
         :key="index"
       >
-        <td class="px-6 py-4">{{ item.type }}</td>
-        <td class="px-6 py-4">{{ item.category }}</td>
-        <td class="px-6 py-4">{{ item.date }}</td>
-        <td class="px-6 py-4">{{ item.amout }} TL</td>
-        <td class="px-6 py-4 flex justify-center">
+        <td class="md:px-2 py-2">{{ item.type }}</td>
+        <td class="md:px-2 py-2">{{ item.category }}</td>
+        <td class="md:px-2 py-2">{{ item.date }}</td>
+        <td class="md:px-2 py-2">{{ item.amout }} TL</td>
+        <td class="md:px-2 py-2 flex justify-center">
           <img
             class="w-4 cursor-pointer"
             src="../assets/delete.svg"
