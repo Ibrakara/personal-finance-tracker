@@ -1,6 +1,11 @@
 import { computed, onMounted, ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { EXPENSE_CATAGORIES, INCOME_CATAGORIES, Transaction, TRANSACTION_TYPE } from '@/types'
+import {
+  TRANSACTION_TYPE,
+  type EXPENSE_CATAGORIES,
+  type INCOME_CATAGORIES,
+  type Transaction,
+} from '@/types'
 import { v4 as uuidv4 } from 'uuid'
 
 export const useTransactionStore = defineStore('transactionStore', () => {
@@ -35,6 +40,25 @@ export const useTransactionStore = defineStore('transactionStore', () => {
   })
   const getTransactionList = computed(() => {
     return transactionList.value
+  })
+  const balance = computed(() => {
+    return totalIncome.value - totalExpense.value
+  })
+  const totalIncome = computed(() => {
+    return transactionList.value.reduce((prevVal, currentValue) => {
+      if (currentValue.type === TRANSACTION_TYPE.INCOME) {
+        return prevVal + currentValue.amount
+      }
+      return prevVal
+    }, 0)
+  })
+  const totalExpense = computed(() => {
+    return transactionList.value.reduce((prevVal, currentValue) => {
+      if (currentValue.type === TRANSACTION_TYPE.EXPENSE) {
+        return prevVal + currentValue.amount
+      }
+      return prevVal
+    }, 0)
   })
 
   //methods
@@ -90,6 +114,9 @@ export const useTransactionStore = defineStore('transactionStore', () => {
     incomeCategoryList,
     transactionTypeList,
     getTransactionList,
+    totalIncome,
+    totalExpense,
+    balance,
     //methods
     createTransaction,
     deleteTransaction,
