@@ -42,7 +42,7 @@ export const useTransactionStore = defineStore('transactionStore', () => {
     const transactionObject: Transaction = {
       id: uuidv4(),
       date: transactionFormDate.value!,
-      amout: transactionFormAmount.value!,
+      amount: transactionFormAmount.value!,
       type: transactionFormType.value!,
       category: transactionFormCategory.value!,
     }

@@ -18,7 +18,7 @@
         <td class="md:px-2 py-2">{{ capitalizeFirstLetter(item.type) }}</td>
         <td class="md:px-2 py-2">{{ capitalizeFirstLetter(item.category) }}</td>
         <td class="md:px-2 py-2">{{ formatDate(item.date) }}</td>
-        <td class="md:px-2 py-2">{{ item.amout }} TL</td>
+        <td class="md:px-2 py-2">{{ item.amount }} TL</td>
         <td class="md:px-2 py-2 flex justify-center">
           <img
             class="w-4 cursor-pointer"

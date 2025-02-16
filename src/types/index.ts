@@ -1,6 +1,6 @@
 export type Transaction = {
   id: string
-  amout: number
+  amount: number
   type: TRANSACTION_TYPE
   date: string
   category: EXPENSE_CATAGORIES | INCOME_CATAGORIES
