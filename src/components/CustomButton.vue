@@ -6,16 +6,14 @@
     :disabled="disabled"
     @click="onClick"
   >
-    {{ name }}
+    <slot></slot>
   </button>
 </template>
 <script setup lang="ts">
 interface CustomButtonProps {
-  name: string
   disabled?: boolean
 }
 withDefaults(defineProps<CustomButtonProps>(), {
-  name: '',
   disabled: false,
 })
 const emit = defineEmits<{

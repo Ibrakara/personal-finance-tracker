@@ -9,31 +9,28 @@
         class="min-w-80 max-sm:w-3xs w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
         name="Category"
         :list="transactionTypeList"
-      ></CustomDropdown>
+      />
       <CustomDropdown
         v-model="transactionFormCategory"
         class="min-w-80 max-sm:w-3xs w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
         name="Type"
         :list="transactionCategoryList"
-      ></CustomDropdown>
-      <CustomInput
-        v-model="transactionFormAmount"
-        class="min-w-80 max-sm:w-3xs w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
-        type="number"
-        label="Amount"
-      ></CustomInput>
+      />
       <CustomInput
         v-model="transactionFormDate"
         class="min-w-80 max-sm:w-3xs w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
         type="date"
         label="Date"
-      ></CustomInput>
-      {{ transactionFormDate }}
-      <CustomButton
-        :disabled="isCreateButtonDisabled"
-        name="Create transaction"
-        @on-click="createTransaction"
-      ></CustomButton>
+      />
+      <CustomInput
+        v-model="transactionFormAmount"
+        class="min-w-80 max-sm:w-3xs w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
+        type="number"
+        label="Amount"
+      />
+      <CustomButton :disabled="isCreateButtonDisabled" @on-click="createTransaction">
+        Create transaction
+      </CustomButton>
     </form>
   </div>
 </template>
