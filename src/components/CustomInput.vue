@@ -8,6 +8,8 @@
       :placeholder="placeholder"
       :name="label"
       :id="label"
+      :min="min"
+      :max="max"
     />
     <span v-if="error" class="form-error">{{ error }}</span>
   </div>
@@ -20,6 +22,8 @@ interface CustomInputProps {
   type: InputTypeHTMLAttribute
   placeholder?: string
   error?: string
+  min?: string
+  max?: string
 }
 const inputModelValue = defineModel()
 
