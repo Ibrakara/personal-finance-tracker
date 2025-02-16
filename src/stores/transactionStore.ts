@@ -1,12 +1,6 @@
 import { computed, onMounted, ref } from 'vue'
 import { defineStore } from 'pinia'
-import {
-  type Expense,
-  type EXPENSE_CATAGORIES,
-  type Income,
-  type INCOME_CATAGORIES,
-  type TRANSACTION_TYPE,
-} from '@/types'
+import type { EXPENSE_CATAGORIES, INCOME_CATAGORIES, Transaction, TRANSACTION_TYPE } from '@/types'
 
 export const useTransactionStore = defineStore('transactionStore', () => {
   //states
@@ -14,7 +8,7 @@ export const useTransactionStore = defineStore('transactionStore', () => {
   const transactionFormType = ref<TRANSACTION_TYPE>()
   const transactionFormAmount = ref<number>()
   const transactionFormDate = ref<string>()
-  const transactionList = ref<Array<Expense | Income>>([])
+  const transactionList = ref<Array<Transaction>>([])
   //computeds
   const expenseCategoryList = computed(() => {
     return [
@@ -44,7 +38,7 @@ export const useTransactionStore = defineStore('transactionStore', () => {
 
   //methods
   function createTransaction() {
-    const transactionObject: Expense | Income = {
+    const transactionObject: Transaction = {
       date: transactionFormDate.value!,
       amout: transactionFormAmount.value!,
       type: transactionFormType.value!,
@@ -62,7 +56,7 @@ export const useTransactionStore = defineStore('transactionStore', () => {
   function getFromLocalStorage() {
     const stringifiedTransactionList = localStorage.getItem('transactionList')
     if (stringifiedTransactionList) {
-      const transactionListArray = JSON.parse(stringifiedTransactionList) as Array<Expense | Income>
+      const transactionListArray = JSON.parse(stringifiedTransactionList) as Array<Transaction>
       transactionList.value = transactionListArray
     }
   }

@@ -1,21 +1,12 @@
 <template>
-  <CustomTable :transactionList="transactionList"></CustomTable>
+  <CustomTable :transactionList="getTransactionList"></CustomTable>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
 import CustomTable from '@/components/CustomTable.vue'
-import { EXPENSE_CATAGORIES, TRANSACTION_TYPE } from '@/types'
-const transactionList = computed(() => {
-  const today = new Date()
-  return [
-    {
-      amout: 0,
-      category: EXPENSE_CATAGORIES.TRANSPORTATION,
-      date: today,
-      type: TRANSACTION_TYPE.EXPENSE,
-    },
-  ]
-})
+import { useTransactionStore } from '@/stores/transactionStore'
+import { storeToRefs } from 'pinia'
+const transactionStore = useTransactionStore()
+const { getTransactionList } = storeToRefs(transactionStore)
 </script>
 
 <style>

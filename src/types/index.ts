@@ -1,9 +1,13 @@
-export type Transaction = { amout: number; type: TRANSACTION_TYPE; date: string }
+export type Transaction = {
+  amout: number
+  type: TRANSACTION_TYPE
+  date: string
+  category: EXPENSE_CATAGORIES | INCOME_CATAGORIES
+}
 export enum TRANSACTION_TYPE {
   INCOME = 'INCOME',
   EXPENSE = 'EXPENSE',
 }
-export type Expense = Transaction & { category: EXPENSE_CATAGORIES }
 export enum EXPENSE_CATAGORIES {
   HOUSING = 'HOUSING',
   UTILITIES = 'UTILITIES',
@@ -18,7 +22,6 @@ export enum EXPENSE_CATAGORIES {
   HOBBIES = 'HOBBIES',
   OTHER = 'OTHER',
 }
-export type Income = Transaction & { category: INCOME_CATAGORIES }
 export enum INCOME_CATAGORIES {
   SALARY = 'SALARY',
   FREELANCE = 'FREELANCE',

@@ -25,9 +25,9 @@
   </table>
 </template>
 <script setup lang="ts">
-import type { Expense, Income } from '@/types'
+import type { Transaction } from '@/types'
 interface CustomTableProps {
-  transactionList: Expense[] | Income[]
+  transactionList: Transaction[]
 }
 defineProps<CustomTableProps>()
 </script>
