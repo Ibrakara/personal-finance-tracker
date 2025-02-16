@@ -5,24 +5,28 @@
     </div>
     <form class="min-w-xs w-full mx-auto min-h-72 flex flex-col justify-between items-center">
       <CustomDropdown
-        v-model="categorySelection"
+        v-model="transactionFormType"
         class="min-w-80 max-sm:w-3xs w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
         name="Category"
-        :list="['Expense', 'Income']"
-      ></CustomDropdown>
-      <CustomDropdown
-        v-model="typeSelection"
-        class="min-w-80 max-sm:w-3xs w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
-        name="Type"
         :list="transactionTypeList"
       ></CustomDropdown>
+      <CustomDropdown
+        v-model="transactionFormCategory"
+        class="min-w-80 max-sm:w-3xs w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
+        name="Type"
+        :list="transactionCategoryList"
+      ></CustomDropdown>
       <CustomInput
-        v-model="amount"
+        v-model="transactionFormAmount"
         class="min-w-80 max-sm:w-3xs w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
         type="number"
         label="Amount"
       ></CustomInput>
-      <CustomButton name="Create transaction"></CustomButton>
+      <CustomButton
+        :disabled="!transactionFormCategory || !transactionFormType || !transactionFormAmount"
+        name="Create transaction"
+        @on-click="createTransaction"
+      ></CustomButton>
     </form>
   </div>
 </template>
@@ -32,13 +36,26 @@ import CustomDropdown from '@/components/CustomDropdown.vue'
 import CustomInput from '@/components/CustomInput.vue'
 import { useTransactionStore } from '@/stores/transactionStore'
 import { storeToRefs } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, watch } from 'vue'
 const transactionStore = useTransactionStore()
-const categorySelection = ref('')
-const typeSelection = ref('')
-const amount = ref(0)
-const { expenseCategoryList } = storeToRefs(transactionStore)
-const transactionTypeList = computed(() => {
-  return expenseCategoryList.value
+const {
+  transactionFormCategory,
+  transactionFormType,
+  transactionFormAmount,
+  expenseCategoryList,
+  incomeCategoryList,
+  transactionTypeList,
+} = storeToRefs(transactionStore)
+const { createTransaction } = transactionStore
+const transactionCategoryList = computed(() => {
+  return transactionFormType.value !== 'INCOME'
+    ? expenseCategoryList.value
+    : incomeCategoryList.value
 })
+watch(
+  () => transactionFormType.value,
+  () => {
+    transactionFormCategory.value = undefined
+  },
+)
 </script>
