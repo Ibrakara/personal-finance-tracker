@@ -134,5 +134,7 @@ export const useTransactionStore = defineStore('transactionStore', () => {
     //methods
     createTransaction,
     deleteTransaction,
+    getFromLocalStorage,
+    setLocalStorage,
   }
 })
