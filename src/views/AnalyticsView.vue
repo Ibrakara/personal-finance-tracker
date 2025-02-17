@@ -10,15 +10,26 @@
       <div class="flex justify-around w-full gap-2">
         <CardComponent title="Income by Category">
           <div class="h-48 w-full">
-            <Doughnut :data="categoryChartDataByType(TRANSACTION_TYPE.INCOME)" :options="options" />
+            <Doughnut
+              v-if="categoryChartDataByType(TRANSACTION_TYPE.INCOME).labels.length > 0"
+              :data="categoryChartDataByType(TRANSACTION_TYPE.INCOME)"
+              :options="options"
+            />
+            <div class="flex justify-center items-center h-full" v-else>
+              <p>No data</p>
+            </div>
           </div>
         </CardComponent>
         <CardComponent title="Expense by Category">
           <div class="h-48 w-full">
             <Doughnut
+              v-if="categoryChartDataByType(TRANSACTION_TYPE.EXPENSE).labels.length > 0"
               :data="categoryChartDataByType(TRANSACTION_TYPE.EXPENSE)"
               :options="options"
             />
+            <div class="flex justify-center items-center h-full" v-else>
+              <p>No data</p>
+            </div>
           </div>
         </CardComponent>
       </div>
