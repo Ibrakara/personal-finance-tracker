@@ -10,9 +10,19 @@
         <CardComponent title="Balance" :description="`${balance ? balance : '-'} TL`" />
       </div>
       <div class="flex justify-around w-full">
-        <CardComponent title="Total Income" description="1290 TL" />
-        <CardComponent title="Total Expense" />
-        <CardComponent title="Balance" description="0 TL" />
+        <CardComponent title="Income by Category">
+          <div class="h-48 w-full">
+            <Doughnut :data="categoryChartDataByType(TRANSACTION_TYPE.INCOME)" :options="options" />
+          </div>
+        </CardComponent>
+        <CardComponent title="Expense by Category">
+          <div class="h-48 w-full">
+            <Doughnut
+              :data="categoryChartDataByType(TRANSACTION_TYPE.EXPENSE)"
+              :options="options"
+            />
+          </div>
+        </CardComponent>
       </div>
     </div>
   </div>
@@ -21,6 +31,16 @@
 import CardComponent from '@/components/CardComponent.vue'
 import { useTransactionStore } from '@/stores/transactionStore'
 import { storeToRefs } from 'pinia'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'vue-chartjs'
+import { TRANSACTION_TYPE } from '@/types'
+ChartJS.register(ArcElement, Tooltip, Legend)
+const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+}
+
 const transactionStore = useTransactionStore()
-const { balance, totalExpense, totalIncome } = storeToRefs(transactionStore)
+const { balance, totalExpense, totalIncome, categoryChartDataByType } =
+  storeToRefs(transactionStore)
 </script>

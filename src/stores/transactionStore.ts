@@ -1,12 +1,8 @@
 import { computed, onMounted, ref } from 'vue'
 import { defineStore } from 'pinia'
-import {
-  TRANSACTION_TYPE,
-  type EXPENSE_CATAGORIES,
-  type INCOME_CATAGORIES,
-  type Transaction,
-} from '@/types'
+import { EXPENSE_CATAGORIES, INCOME_CATAGORIES, TRANSACTION_TYPE, type Transaction } from '@/types'
 import { v4 as uuidv4 } from 'uuid'
+import { getRandomHexColorListByCount, populateCategoryMapByTransactionType } from '@/helpers'
 
 export const useTransactionStore = defineStore('transactionStore', () => {
   //states
@@ -43,6 +39,22 @@ export const useTransactionStore = defineStore('transactionStore', () => {
   })
   const balance = computed(() => {
     return totalIncome.value - totalExpense.value
+  })
+  const categoryChartDataByType = computed(() => {
+    return (type: TRANSACTION_TYPE) => {
+      const categoryMap = populateCategoryMapByTransactionType(type, transactionList.value)
+      const hexColorList = getRandomHexColorListByCount(categoryMap.size)
+      const data = {
+        labels: [...categoryMap.keys()],
+        datasets: [
+          {
+            backgroundColor: [...hexColorList],
+            data: [...categoryMap.values()],
+          },
+        ],
+      }
+      return data
+    }
   })
   const totalIncome = computed(() => {
     return transactionList.value.reduce((prevVal, currentValue) => {
@@ -117,6 +129,7 @@ export const useTransactionStore = defineStore('transactionStore', () => {
     totalIncome,
     totalExpense,
     balance,
+    categoryChartDataByType,
     //methods
     createTransaction,
     deleteTransaction,
