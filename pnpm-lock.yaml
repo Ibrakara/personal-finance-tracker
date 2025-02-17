@@ -31,6 +31,9 @@ dependencies:
     version: 4.5.0(vue@3.5.13)
 
 devDependencies:
+  '@pinia/testing':
+    specifier: ^1.0.0
+    version: 1.0.0(pinia@2.3.1)
   '@tsconfig/node22':
     specifier: ^22.0.0
     version: 22.0.0
@@ -825,6 +828,14 @@ packages:
     resolution: {integrity: sha1-YBNllzbJ2/zMluipwrPeMX3zkyM=}
     dev: true
 
+  /@pinia/testing@1.0.0(pinia@2.3.1):
+    resolution: {integrity: sha1-39P9sAIg5W8lidI6pBS/myT6VwM=}
+    peerDependencies:
+      pinia: '>=3.0.0'
+    dependencies:
+      pinia: 2.3.1(typescript@5.7.3)(vue@3.5.13)
+    dev: true
+
   /@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha1-p36nQvqyV3UUVDTrHSMoz1ATrDM=}
     engines: {node: '>=14'}
@@ -1489,7 +1500,6 @@ packages:
 
   /@vue/devtools-api@6.6.4:
     resolution: {integrity: sha1-y+l/4BYrNl7cHbqA4XP5BJJTU0M=}
-    dev: false
 
   /@vue/devtools-core@7.7.2(vite@6.1.0)(vue@3.5.13):
     resolution: {integrity: sha1-+7p3FLTOzU5LgOG2jCSbATxupqc=}
@@ -3096,7 +3106,6 @@ packages:
       vue-demi: 0.14.10(vue@3.5.13)
     transitivePeerDependencies:
       - '@vue/composition-api'
-    dev: false
 
   /postcss-selector-parser@6.1.2:
     resolution: {integrity: sha1-J+y0H7Djtrp6HshP/zR/c0x5Kd4=}
@@ -3759,7 +3768,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.5.13(typescript@5.7.3)
-    dev: false
 
   /vue-eslint-parser@9.4.3(eslint@9.20.1):
     resolution: {integrity: sha1-mwSyLHFAHx6Lypvnw+NBakvedqg=}
