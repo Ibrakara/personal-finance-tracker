@@ -48,17 +48,20 @@
     </div>
     <div
       v-if="isOpen"
+      data-test="navbar-component-popup-container"
       class="absolute top-16 left-0 w-full bg-white shadow-md md:hidden transition-all duration-300"
     >
       <div class="px-4 py-3 space-y-2">
         <RouterLink
-          v-for="link in links"
+          v-for="(link, index) in links"
+          :data-test="`mobile-link-${index}`"
           :key="link.path"
           :to="link.path"
           class="block text-gray-700 hover:text-blue-500 hover:font-semibold transition-all"
           @click="isOpen = false"
-          >{{ link.name }}</RouterLink
         >
+          {{ link.name }}
+        </RouterLink>
       </div>
     </div>
   </nav>
