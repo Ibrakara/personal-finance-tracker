@@ -59,7 +59,7 @@ const transactionListByDate = computed(() => {
       : null
 
     if (!filterStartDate && !filterEndDate) {
-      return true // Do not filter if both start and end dates are empty
+      return true
     }
 
     if (filterStartDate && filterEndDate) {

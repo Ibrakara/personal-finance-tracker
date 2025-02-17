@@ -3,7 +3,6 @@ import { mount } from '@vue/test-utils'
 import { createRouter, createWebHistory } from 'vue-router'
 import Navigation from '@/components/NavbarComponent.vue'
 
-// Mock Router
 const routes = [
   { path: '/', component: { template: '<div>Analytics</div>' } },
   { path: '/create', component: { template: '<div>Create Transaction</div>' } },

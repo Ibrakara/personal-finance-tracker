@@ -7,7 +7,6 @@ import {
 } from '@/helpers'
 import { EXPENSE_CATAGORIES, INCOME_CATAGORIES, type Transaction, TRANSACTION_TYPE } from '@/types'
 
-// Sample transaction data
 const transactionList: Transaction[] = [
   {
     id: '0',
@@ -76,7 +75,7 @@ describe('Helper Functions', () => {
         TRANSACTION_TYPE.EXPENSE,
         transactionList,
       )
-      expect(expenseMap.get(EXPENSE_CATAGORIES.GROCERIES)).toBe(250) // 100 + 150
+      expect(expenseMap.get(EXPENSE_CATAGORIES.GROCERIES)).toBe(250)
     })
 
     it('should return an empty map if no transactions match the given type', () => {
@@ -90,7 +89,7 @@ describe('Helper Functions', () => {
       const colorList = getRandomHexColorListByCount(5)
       expect(colorList).toHaveLength(5)
       colorList.forEach((color) => {
-        expect(color).toMatch(/^#[0-9a-fA-F]{6}$/) // Check if the color is in hex format
+        expect(color).toMatch(/^#[0-9a-fA-F]{6}$/)
       })
     })
 
@@ -102,7 +101,7 @@ describe('Helper Functions', () => {
     it('should return different colors for different calls', () => {
       const colorList1 = getRandomHexColorListByCount(5)
       const colorList2 = getRandomHexColorListByCount(5)
-      expect(colorList1).not.toEqual(colorList2) // This is not guaranteed to fail but should show the behavior
+      expect(colorList1).not.toEqual(colorList2)
     })
   })
 })

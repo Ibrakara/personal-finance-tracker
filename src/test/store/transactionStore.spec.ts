@@ -3,7 +3,6 @@ import { createPinia, setActivePinia } from 'pinia'
 import { useTransactionStore } from '@/stores/transactionStore'
 import { EXPENSE_CATAGORIES, INCOME_CATAGORIES, TRANSACTION_TYPE } from '@/types'
 
-// Mocking localStorage
 const mockLocalStorage = (function () {
   let store: Record<string, string> = {}
   return {
@@ -26,7 +25,6 @@ const mockLocalStorage = (function () {
   }
 })()
 
-// Replace the global localStorage with the mock storage
 globalThis.localStorage = mockLocalStorage
 
 describe('transactionStore', () => {
@@ -67,7 +65,6 @@ describe('transactionStore', () => {
   it('should set transaction list to localStorage when setLocalStorage is called', () => {
     const store = useTransactionStore()
 
-    // Add some transactions
     store.transactionList.push({
       id: '1',
       category: EXPENSE_CATAGORIES.GROCERIES,
@@ -83,10 +80,8 @@ describe('transactionStore', () => {
       date: '2025-02-18',
     })
 
-    // Call the setLocalStorage method to save the transaction list
     store.setLocalStorage()
 
-    // Verify that the data is saved in localStorage
     const storedData = JSON.parse(localStorage.getItem('transactionList')!)
     expect(storedData).toHaveLength(2)
     expect(storedData[0].category).toBe(EXPENSE_CATAGORIES.GROCERIES)
@@ -96,7 +91,6 @@ describe('transactionStore', () => {
   it('should get transaction list from localStorage when getFromLocalStorage is called', () => {
     const store = useTransactionStore()
 
-    // Mock localStorage with a sample transaction list
     const mockData = [
       {
         id: '1',
@@ -115,10 +109,8 @@ describe('transactionStore', () => {
     ]
     localStorage.setItem('transactionList', JSON.stringify(mockData))
 
-    // Call the getFromLocalStorage method to load the transaction list
     store.getFromLocalStorage()
 
-    // Verify that the transaction list is loaded correctly
     expect(store.transactionList).toHaveLength(2)
     expect(store.transactionList[0].category).toBe(EXPENSE_CATAGORIES.GROCERIES)
     expect(store.transactionList[1].category).toBe(INCOME_CATAGORIES.SALARY)
@@ -127,13 +119,10 @@ describe('transactionStore', () => {
   it('should not load transaction list from localStorage if data is not available', () => {
     const store = useTransactionStore()
 
-    // Simulate no data in localStorage
     localStorage.removeItem('transactionList')
 
-    // Call the getFromLocalStorage method
     store.getFromLocalStorage()
 
-    // Verify that the transaction list is still empty
     expect(store.transactionList).toHaveLength(0)
   })
 
