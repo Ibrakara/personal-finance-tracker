@@ -4,6 +4,7 @@ export const capitalizeFirstLetter = (value: string | unknown) => {
   if (typeof value === 'string') {
     return value ? value[0].toUpperCase() + value.substring(1)?.toLowerCase() : ''
   }
+  return ''
 }
 export const formatDate = (date: Date | string): string => {
   const dateString = new Date(date)
