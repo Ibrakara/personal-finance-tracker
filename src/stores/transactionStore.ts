@@ -117,6 +117,7 @@ export const useTransactionStore = defineStore('transactionStore', () => {
 
   return {
     //states
+    transactionList,
     transactionFormCategory,
     transactionFormType,
     transactionFormAmount,
