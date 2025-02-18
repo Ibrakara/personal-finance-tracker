@@ -120,6 +120,6 @@ describe('TransactionList.vue', () => {
 
   it('should correctly compute total pages', () => {
     const totalPages = wrapper.vm.totalPages
-    expect(totalPages).toBe(1) // Since we have 4 transactions and 10 per page
+    expect(totalPages).toBe(1)
   })
 })

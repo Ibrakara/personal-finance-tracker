@@ -31,7 +31,6 @@ const mockLocalStorage = (function () {
 
 globalThis.localStorage = mockLocalStorage
 
-// Mock Doughnut component
 vi.mock('vue-chartjs', () => ({
   Doughnut: {
     props: ['data', 'options'],
@@ -107,7 +106,6 @@ describe('Analytics.vue', () => {
     await flushPromises()
     await wrapper.vm.$nextTick()
 
-    // Check Doughnut chart data
     const doughnutCharts = wrapper.findAllComponents(Doughnut)
     expect(doughnutCharts).toHaveLength(2)
 
