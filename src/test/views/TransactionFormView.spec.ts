@@ -46,8 +46,6 @@ describe('Form component', () => {
     })
     const transactionStore = useTransactionStore()
 
-    console.table(transactionStore.transactionFormType)
-
     transactionStore.transactionFormType = TRANSACTION_TYPE.EXPENSE
     transactionStore.transactionFormCategory = EXPENSE_CATAGORIES.HEALTHCARE
 
