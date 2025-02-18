@@ -31,3 +31,9 @@ export enum INCOME_CATAGORIES {
   GIFT = 'GIFT',
   OTHER = 'OTHER',
 }
+
+export type Notification = {
+  id: number
+  message: string
+  type: 'success' | 'error' | 'info' | 'warning'
+}

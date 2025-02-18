@@ -30,7 +30,7 @@
         type="number"
         label="Amount"
       />
-      <CustomButton :disabled="isCreateButtonDisabled" @on-click="createTransaction">
+      <CustomButton :disabled="isCreateButtonDisabled" @on-click="create">
         Create transaction
       </CustomButton>
     </form>
@@ -40,10 +40,12 @@
 import CustomButton from '@/components/CustomButton.vue'
 import CustomDropdown from '@/components/CustomDropdown.vue'
 import CustomInput from '@/components/CustomInput.vue'
+import { useNotificationStore } from '@/stores/notifiationStore'
 import { useTransactionStore } from '@/stores/transactionStore'
 import { storeToRefs } from 'pinia'
 import { computed, watch } from 'vue'
 const transactionStore = useTransactionStore()
+const notificationStore = useNotificationStore()
 const {
   transactionFormCategory,
   transactionFormType,
@@ -73,4 +75,8 @@ watch(
     transactionFormCategory.value = undefined
   },
 )
+function create() {
+  createTransaction()
+  notificationStore.addNotification('Transaction is successfully created.', 'success')
+}
 </script>
